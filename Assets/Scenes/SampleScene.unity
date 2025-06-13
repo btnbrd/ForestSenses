@@ -3128,6 +3128,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1406600923336342678, guid: 7c19305c680f1ba428af55220b059250, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1958027443419251260, guid: 7c19305c680f1ba428af55220b059250, type: 3}
       propertyPath: m_Name
       value: InteractableDetector
