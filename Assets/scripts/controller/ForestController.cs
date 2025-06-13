@@ -28,15 +28,35 @@ namespace Controller
             // Обновляем состояние бега
             IsRunning = !(moveX == 0 && moveZ == 0);
             
-            AnimationController.Instance.SetRunning(IsRunning);
+            
             if (moveZ != 0)
-            {
+            {   AnimationController.Instance.SetRunning(true);
                 int vertical = moveZ <= 0 ? 1 : -1;
                 if (vertical != prevVertical)
                 {
                     prevVertical = vertical;
                     AnimationController.Instance.SetVertical(vertical);
                 }
+            }
+            else
+            {
+                AnimationController.Instance.SetRunning(false);
+            }
+
+            if (moveX != 0)
+            {
+                AnimationController.Instance.SetHorizontal(true);
+                if (moveX > 0)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                } else if (moveX < 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+            }
+            else
+            {
+                AnimationController.Instance.SetHorizontal(false);
             }
             
             // Формируем вектор движения

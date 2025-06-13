@@ -1,36 +1,44 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
+
+
 namespace ForestManagers
 {
+    [DefaultExecutionOrder((-1))]
     public class AnimationController : MonoBehaviour
     {
-        private static readonly int Horizontal = Animator.StringToHash("Horizontal");
-        private static readonly int Vertical = Animator.StringToHash("Vertical");
-        private static readonly int Speed = Animator.StringToHash("Speed");
+        private static readonly int Horizontal = Animator.StringToHash("horizontal");
+        private static readonly int Vertical = Animator.StringToHash("vertical");
+        private static readonly int IsRunning = Animator.StringToHash("running");
         [SerializeField] private Animator animator;
         
         public static AnimationController Instance{get; private set;}
 
-        public void SetHorizontal()
+        private void Awake()
         {
-            animator.SetFloat(Horizontal, 0f);
+            Instance = this;
+        }
+
+        public void SetHorizontal(bool horizontal)
+        {
+            animator.SetBool(Horizontal, horizontal);
         }
 
         public void SetVertical(int vertical)
         {
-            animator.SetFloat(Vertical, 0f);
+            animator.SetInteger(Vertical, vertical);
         }
 
         public void SetRunning(bool isRunning)
         {
-            animator.SetBool(Speed, isRunning);
+            animator.SetBool(IsRunning, isRunning);
         }
 
         public void SetTrigger(string trigger)
         {
             
-            SetTrigger(trigger);
+            animator.SetTrigger(trigger);
             SetVertical(1);
         }
         
