@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7accb5c5264d08b81c36709ca4d86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: SampleScene
+  nextScene: LobbyScene
 --- !u!4 &1715248124
 Transform:
   m_ObjectHideFlags: 0
