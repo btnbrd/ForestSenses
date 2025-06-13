@@ -1485,6 +1485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 2
+  razmaxTime: 0.4
   isInPrecisionGame: 0
 --- !u!1 &2124652457
 GameObject:
