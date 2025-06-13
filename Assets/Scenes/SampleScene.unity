@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: LobbyScene
-  runDurationSeconds: 3
+  runDurationSeconds: 30
   timerText: {fileID: 1504378518}
 --- !u!1 &705507993
 GameObject:
@@ -643,7 +643,7 @@ MonoBehaviour:
   intervalStableVariation: 3
   intervalFlicker: 0.5
   baseIntensity: 3.5
-  rangeIntensity: 0.2
+  rangeIntensity: 0.4
   minRange: 12
   maxRange: 40
   minSpotAngle: 15
