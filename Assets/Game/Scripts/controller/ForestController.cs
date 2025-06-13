@@ -63,6 +63,10 @@ namespace Controller
                     transform.localScale = new Vector3(-1, 1, 1);
                 }
             }
+            else
+            {
+                AnimationController.Instance.SetHorizontal(false);
+            }
             
             // Формируем вектор движения
             Vector3 moveDirection = new Vector3(moveX, 0f, moveZ).normalized;
