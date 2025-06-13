@@ -38,7 +38,7 @@ public class TimerController : MonoBehaviour
     {
         while (timeRemaining > 0 && !isLoading)
         {
-            yield return new WaitForSecondsRealtime(1); // Ждём 1 секунду
+            yield return new WaitForSeconds(1); // Ждём 1 секунду
             timeRemaining -= 1; // Уменьшаем на 1 секунду
             UpdateTimerDisplay(); // Обновляем UI
         }
