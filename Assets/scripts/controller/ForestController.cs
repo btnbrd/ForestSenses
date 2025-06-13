@@ -5,8 +5,14 @@ namespace Controller
     public class ForestController : MonoBehaviour
     {
         [SerializeField] private float moveSpeed = 5f; // Скорость движения
+        private float speedUpgradeMultiplier;
 
         public bool IsRunning; // Движется ли персонаж
+
+        void Awake()
+        {
+            speedUpgradeMultiplier = PlayerPrefs.GetFloat(ConstantsAndConfigs.SPEED_STAT_NAME, ConstantsAndConfigs.SPEED_MULTIPLIER_DEFAULT);
+        }
 
         void Update()
         {
@@ -27,7 +33,7 @@ namespace Controller
      
 
             // Перемещаем персонажа
-            transform.Translate(moveDirection * (moveSpeed * Time.deltaTime), Space.World);
+            transform.Translate(moveDirection * (moveSpeed * Time.deltaTime) * speedUpgradeMultiplier, Space.World);
         }
     }
 }

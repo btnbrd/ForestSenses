@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -29,6 +30,14 @@ namespace Controller
         private float flickerDuration;
         private bool isFlickering;
         private float radiusTimer; // Таймер для изменения радиуса
+
+        void Awake()
+        {
+            // Сорян, полностью перезаписываю переменные.
+            // Арктангенс потому что... ну эээ типа радиус он на земле, а нам нужен угол, короче нарисуйте и поймёте.
+            minSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(PlayerPrefs.GetFloat(ConstantsAndConfigs.MIN_RADIUS_STAT_NAME, ConstantsAndConfigs.MIN_RADIUS_DEFAULT) / offset.y));
+            maxSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(PlayerPrefs.GetFloat(ConstantsAndConfigs.MAX_RADIUS_STAT_NAME, ConstantsAndConfigs.MAX_RADIUS_DEFAULT) / offset.y));
+        }
 
         void Start()
         {
@@ -72,7 +81,7 @@ namespace Controller
             {
                 isFlickering = true;
                 flickerDuration = intervalFlicker; // Начинаем мерцание на 1 секунду
-                flickerTimer = Random.Range(intervalStable-intervalStableVariation, intervalStable+intervalStableVariation); // Сбрасываем таймер для следующего цикла
+                flickerTimer = UnityEngine.Random.Range(intervalStable-intervalStableVariation, intervalStable+intervalStableVariation); // Сбрасываем таймер для следующего цикла
             }
 
             if (isFlickering)
@@ -81,7 +90,7 @@ namespace Controller
 
                 // Мерцание: меняем интенсивность каждый кадр
                
-                float flicker = Random.Range(-rangeIntensity, rangeIntensity);
+                float flicker = UnityEngine.Random.Range(-rangeIntensity, rangeIntensity);
                 _spotLight.intensity = Mathf.Max(minLightIntensity, baseIntensity + flicker);
 
                 if (flickerDuration <= 0f)
