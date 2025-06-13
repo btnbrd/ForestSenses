@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0
+  m_ReflectionIntensity: 0.323
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 705507994}
   - component: {fileID: 705507996}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,10 +258,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 4.27
-  m_Range: 35.3
-  m_SpotAngle: 28.1
-  m_InnerSpotAngle: 18.9
+  m_Intensity: 4
+  m_Range: 11.75
+  m_SpotAngle: 14.6
+  m_InnerSpotAngle: 3
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -339,6 +339,17 @@ MonoBehaviour:
   target: {fileID: 2115513714}
   smoothSpeed: 15
   offset: {x: 0, y: 10, z: 0.7}
+  minLightIntensity: 0.5
+  intervalStable: 5
+  intervalStableVariation: 3
+  intervalFlicker: 0.5
+  baseIntensity: 3.5
+  rangeIntensity: 0.2
+  minRange: 12
+  maxRange: 40
+  minSpotAngle: 15
+  maxSpotAngle: 120
+  radiusChangeDuration: 60
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
