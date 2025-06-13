@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ForestManagers;
 using UnityEngine;
 
 public class PrecisionGame : MonoBehaviour
@@ -68,7 +69,7 @@ public class PrecisionGame : MonoBehaviour
         Quaternion targetRotation = startRotation * Quaternion.Euler(0f, 180f, 0f);
     
         float elapsedTime = 0f;
-        GameManager.Instance.SetAnimatorTrigger("razmax");
+        AnimationController.Instance.SetTrigger("razmax");
         while (elapsedTime < razmaxTime)
         {
             elapsedTime += Time.deltaTime;
@@ -85,7 +86,7 @@ public class PrecisionGame : MonoBehaviour
 
     private IEnumerator HitCoroutine()
     {
-        GameManager.Instance.SetAnimatorTrigger("hit");
+        AnimationController.Instance.SetTrigger("hit");
         
         yield return new WaitForSeconds(hitTime);
         PlayHitSound(); // Проигрываем звук

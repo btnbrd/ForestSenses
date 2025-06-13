@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     private InteractableDetector treeInteraction;
     [SerializeField] private Animator animator;
     [SerializeField] private float razmaxTime = 1f; // Время поворота (замаха)
-    
-    
+
+
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Starting Precision Game");
         precisionGame.StartGame();
     }
-    
+
 
     public void EndPrecisionGame()
     {
@@ -41,8 +41,4 @@ public class GameManager : MonoBehaviour
         treeTip.gameObject.SetActive(isActive);
     }
 
-    public void SetAnimatorTrigger(string trigger)
-    {
-        animator.SetTrigger(trigger);
-    }
 }
