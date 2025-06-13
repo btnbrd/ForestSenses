@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [SerializeField] private PrecisionGame precisionGame;
-    private TreeInteraction treeInteraction;
+    [SerializeField] private GameObject treeTip;
+    private InteractableDetector treeInteraction;
 
     private void Awake()
     {
         Instance = this;
-        treeInteraction = FindObjectOfType<TreeInteraction>();
+        treeInteraction = FindObjectOfType<InteractableDetector>();
     }
 
 
@@ -26,5 +27,11 @@ public class GameManager : MonoBehaviour
     public void EndPrecisionGame()
     {
         treeInteraction.isInPrecisionGame = false;
+    }
+
+    public void ShowInteractableTip(bool isActive)
+    {
+        Debug.Log(isActive);
+        treeTip.gameObject.SetActive(isActive);
     }
 }
