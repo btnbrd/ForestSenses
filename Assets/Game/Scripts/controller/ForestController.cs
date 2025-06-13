@@ -5,9 +5,10 @@ namespace Controller
     public class ForestController : MonoBehaviour
     {
         [SerializeField] private float moveSpeed = 5f; // Скорость движения
+
         private float speedUpgradeMultiplier;
 
-        private Animator _animator;
+
         public bool IsRunning; // Движется ли персонаж
 
         void Awake()
@@ -18,7 +19,7 @@ namespace Controller
         private int prevVertical = 1;
         void Start()
         {
-            _animator = GetComponent<Animator>();
+
             
         }
         void Update()
@@ -35,14 +36,30 @@ namespace Controller
             // Обновляем состояние бега
             IsRunning = !(moveX == 0 && moveZ == 0);
             
-            _animator.SetBool("running", IsRunning);
+            
             if (moveZ != 0)
-            {
+            {   AnimationController.Instance.SetRunning(true);
                 int vertical = moveZ <= 0 ? 1 : -1;
                 if (vertical != prevVertical)
                 {
                     prevVertical = vertical;
-                    _animator.SetInteger("vertical", vertical);
+                    AnimationController.Instance.SetVertical(vertical);
+                }
+            }
+            else
+            {
+                AnimationController.Instance.SetRunning(false);
+            }
+
+            if (moveX != 0)
+            {
+                AnimationController.Instance.SetHorizontal(true);
+                if (moveX > 0)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                } else if (moveX < 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
                 }
             }
             
