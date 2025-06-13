@@ -135,8 +135,9 @@ GameObject:
   - component: {fileID: 131469307}
   - component: {fileID: 131469306}
   - component: {fileID: 131469305}
+  - component: {fileID: 131469309}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: QTECanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +219,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1228267494}
-  - {fileID: 429423799}
   m_Father: {fileID: 362816587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -226,6 +226,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &131469309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131469304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43002af32fdd3c949b8164c30f7a2158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2115513714}
+  razmaxTime: 0.3
+  hitTime: 0.25
+  instance: {fileID: 1228267493}
+  indicator: {fileID: 1943566413}
+  hitZone: {fileID: 2124652458}
+  speed: 300
 --- !u!1 &295609463
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,11 +482,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 131469308}
+  m_Father: {fileID: 1228267494}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 200.03}
+  m_AnchoredPosition: {x: 6.4699707, y: 186.02997}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429423800
@@ -988,8 +1007,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a8a11abe238314390b8b27906d2873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precisionGame: {fileID: 1228267495}
+  precisionGame: {fileID: 131469309}
   treeTip: {fileID: 429423798}
+  animator: {fileID: 2115513715}
+  razmaxTime: 1
 --- !u!114 &624800955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,14 +1726,13 @@ GameObject:
   - component: {fileID: 1228267494}
   - component: {fileID: 1228267497}
   - component: {fileID: 1228267496}
-  - component: {fileID: 1228267495}
   m_Layer: 5
   m_Name: PrecisionGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1228267494
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1728,6 +1748,7 @@ RectTransform:
   - {fileID: 2124652458}
   - {fileID: 1943566413}
   - {fileID: 1277576362}
+  - {fileID: 429423799}
   m_Father: {fileID: 131469308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1735,23 +1756,6 @@ RectTransform:
   m_AnchoredPosition: {x: -306.47, y: 14}
   m_SizeDelta: {x: 30, y: 300.8827}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1228267495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228267493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43002af32fdd3c949b8164c30f7a2158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitSound: {fileID: 8300000, guid: 0e0be5829474f3f4dbe1a1e7570e0c2e, type: 3}
-  audioSource: {fileID: 963194230}
-  indicator: {fileID: 1943566413}
-  hitZone: {fileID: 2124652458}
-  speed: 300
 --- !u!114 &1228267496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3045,6 +3049,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2248647288214322980, guid: 7c19305c680f1ba428af55220b059250, type: 3}
   m_PrefabInstance: {fileID: 136211818922261725}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2115513715 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2980209696012793515, guid: 7c19305c680f1ba428af55220b059250, type: 3}
+  m_PrefabInstance: {fileID: 136211818922261725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2124652457
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,7 +3151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2248647288214322980, guid: 7c19305c680f1ba428af55220b059250, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2248647288214322980, guid: 7c19305c680f1ba428af55220b059250, type: 3}
       propertyPath: m_LocalPosition.z
