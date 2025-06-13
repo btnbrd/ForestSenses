@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PrecisionGame : MonoBehaviour
 {
+    
+    [SerializeField] private AudioClip hitSound; // Звуковой клип для нажатия E
+    [SerializeField] private AudioSource audioSource; // Источник звука
+    
     public RectTransform indicator; // Двигающийся индикатор
     public RectTransform hitZone; // Зона попадания
     public float speed = 300f; // Скорость движения
@@ -34,10 +38,24 @@ public class PrecisionGame : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 inputAllowed = false;
+                PlayHitSound(); // Проигрываем звук
                 CheckResult();
             }
         }
     }
+    
+    void PlayHitSound()
+    {
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+        else
+        {
+            Debug.LogError("no sound to play");
+        }
+    }
+    
 
     public void StartGame()
     {
