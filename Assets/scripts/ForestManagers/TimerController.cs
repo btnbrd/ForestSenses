@@ -8,9 +8,7 @@ using UnityEngine.Serialization;
 public class TimerController : MonoBehaviour
 {
  
-    [SerializeField] private AudioClip screamClip; // Звуковой клип скримера
     [SerializeField] private string sceneToLoad = "NextScene"; // Имя сцены
-    [SerializeField] private AudioSource audioSource; // Источник звука
     [SerializeField] private int runDurationSeconds = 60;
     [SerializeField] private TextMeshProUGUI timerText; 
     
@@ -19,21 +17,7 @@ public class TimerController : MonoBehaviour
 
     void Start()
     {
-      
-
-        if (audioSource == null)
-        {
-            audioSource = GetComponent<AudioSource>();
-            if (audioSource == null)
-            {
-                Debug.LogError("AudioSource component not found on this GameObject!");
-            }
-        }
-
-        if (screamClip == null)
-        {
-            Debug.LogError("Scream AudioClip is not assigned!");
-        }
+        
         timeRemaining = runDurationSeconds;
         UpdateTimerDisplay();
         // Добавляем слушатель на кнопку
@@ -65,12 +49,13 @@ public class TimerController : MonoBehaviour
     
     private IEnumerator PlayScreamAndLoadScene()
     {
-       
-        if (audioSource != null && screamClip != null)
+        if (SoundController.Instance == null)
         {
-            audioSource.PlayOneShot(screamClip);
-            yield return new WaitForSeconds(screamClip.length); // Ждём окончания звука
+            Debug.LogError("No sound controller found");
         }
+        SoundController.Instance.PlayScream();
+        yield return new WaitForSeconds(SoundController.Instance.GetScreamClipLength()); // Ждём окончания звука
+        
 
         SceneManager.LoadScene(sceneToLoad);
         yield break;
