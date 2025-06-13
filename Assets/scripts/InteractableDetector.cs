@@ -8,14 +8,18 @@ public class InteractableDetector : MonoBehaviour
     [SerializeField] private float interactRange = 3;
     [SerializeField] private float razmaxTime = 1f; // Время поворота (замаха)
     public bool isInPrecisionGame;
+    // [SerializeField] private Animator animator;
+
+
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && !isInPrecisionGame && IsTreeInRange())
         {
+            Debug.Log("E in interactable pressed, start game");
             isInPrecisionGame = true;
             var hit = GetTreeInRange();
-            StartCoroutine(RazmaxCoroutine(hit.transform));
+            GameManager.Instance.StartPrecisionGame();
         }
     }
 
@@ -39,26 +43,7 @@ public class InteractableDetector : MonoBehaviour
     }
 
 
-    private IEnumerator RazmaxCoroutine(Transform tree)
-    {
-        Debug.Log("Hello");
-        Quaternion startRotation = transform.parent.rotation;
-        Quaternion targetRotation = startRotation * Quaternion.Euler(0f, 180f, 0f);
 
-        float elapsedTime = 0f;
-
-        while (elapsedTime < razmaxTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / razmaxTime; // Прогресс от 0 до 1
-            transform.parent.rotation = Quaternion.Lerp(startRotation, targetRotation, t);
-            yield return null;
-        }
-
-        transform.parent.rotation = targetRotation;
-
-        GameManager.Instance.StartPrecisionGame();
-    }
 
     private void OnDrawGizmosSelected()
     {
@@ -82,7 +67,7 @@ public class InteractableDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tree"))
         {
-            Debug.Log("Exited tree " + IsTreeInRange());
+      
             if (!IsTreeInRange(0.08f))
             {
                 GameManager.Instance.ShowInteractableTip(false);

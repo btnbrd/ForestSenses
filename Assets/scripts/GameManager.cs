@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PrecisionGame precisionGame;
     [SerializeField] private GameObject treeTip;
     private InteractableDetector treeInteraction;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float razmaxTime = 1f; // Время поворота (замаха)
+    
+    
 
     private void Awake()
     {
@@ -20,18 +24,25 @@ public class GameManager : MonoBehaviour
 
     public void StartPrecisionGame()
     {
-        precisionGame.gameObject.SetActive(true);
+        Debug.Log("Starting Precision Game");
         precisionGame.StartGame();
     }
+    
 
     public void EndPrecisionGame()
     {
+        Debug.Log($"called end precision game {treeInteraction.isInPrecisionGame}");
         treeInteraction.isInPrecisionGame = false;
     }
 
     public void ShowInteractableTip(bool isActive)
     {
-        Debug.Log(isActive);
+
         treeTip.gameObject.SetActive(isActive);
+    }
+
+    public void SetAnimatorTrigger(string trigger)
+    {
+        animator.SetTrigger(trigger);
     }
 }
