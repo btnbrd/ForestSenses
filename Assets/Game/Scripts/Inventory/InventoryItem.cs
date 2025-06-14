@@ -4,12 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public abstract class InventoryItem
 {
-    private string itemName;
-    private Sprite icon;
-    public virtual InventoryItemType ItemType => InventoryItemType.None;
-
-    public string ItemName => itemName;
-    public Sprite Icon => icon;
+    public abstract string ItemName();
+    public abstract Sprite ItemIcon();
+    public abstract ItemType Type();
 
     // Called when the item is used/consumed
     public abstract void Use(GameObject player);

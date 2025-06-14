@@ -5,15 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public enum InventoryItemType
-{
-    None
-};
-
 [System.Serializable]
 class InventoryData
 {
-    public List<InventoryItem> items;
+    public List<InventoryItem> items = new List<InventoryItem>();
 }
 
 // Как юзать: вешаешь на невидимый геймобджект в каждой сцене где нужен инвентарь, всем пользователям (другим скриптам то етсь) раздаёшь ссылку на этот инвентарь.
@@ -21,18 +16,24 @@ public class InventoryManager : MonoBehaviour
 {
     const String INVENTORY_PLAYERPREF_NAME = "Inventory";
 
-    public Dictionary<InventoryItemType, List<InventoryItem>> items;
+    public Dictionary<ItemType, List<InventoryItem>> items = new Dictionary<ItemType, List<InventoryItem>>();
 
     void Awake()
     {
+        foreach (ItemType itemType in (ItemType[])Enum.GetValues(typeof(ItemType)))
+        {
+            items[itemType] = new List<InventoryItem>();
+        }
+
         var data = JsonUtility.FromJson<InventoryData>(PlayerPrefs.GetString(INVENTORY_PLAYERPREF_NAME));
+        if (data is null)
+        {
+            data = new InventoryData();
+        }
+
         foreach (var item in data.items)
         {
-            if (!items.ContainsKey(item.ItemType))
-            {
-                items[item.ItemType] = new List<InventoryItem>();
-            }
-            items[item.ItemType].Add(item);
+            items[item.Type()].Add(item);
         }
     }
 

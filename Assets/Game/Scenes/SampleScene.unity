@@ -961,6 +961,7 @@ GameObject:
   - component: {fileID: 624800956}
   - component: {fileID: 624800957}
   - component: {fileID: 624800958}
+  - component: {fileID: 624800959}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -980,8 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9c7b11f0e63cd4d8d17462491d21ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mushrooms: 0
-  berries: 0
+  inventoryManager: {fileID: 624800959}
 --- !u!4 &624800953
 Transform:
   m_ObjectHideFlags: 0
@@ -1072,6 +1072,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2115513715}
+--- !u!114 &624800959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624800951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43975447356c04641baf32990198f065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

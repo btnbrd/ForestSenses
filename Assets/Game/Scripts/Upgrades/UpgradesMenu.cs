@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UpgradesMenu : MonoBehaviour
 {
+    InventoryManager inventoryManager;
+
     public TextMeshProUGUI minRadText;
     public TextMeshProUGUI maxRadText;
     public TextMeshProUGUI speedText;
@@ -33,26 +35,38 @@ public class UpgradesMenu : MonoBehaviour
 
     public void UpgradeMinRadius()
     {
-        // <Subtract cost from inventory here.>
-        PlayerPrefs.SetFloat(ConstantsAndConfigs.MIN_RADIUS_STAT_NAME, minRadius * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
-        PlayerPrefs.Save();
-        UpdateMinRadius();
+        if (inventoryManager.items.ContainsKey(ItemType.Berry)
+            && inventoryManager.items[ItemType.Berry].Count >= 3)
+        {
+            inventoryManager.items[ItemType.Berry].RemoveRange(0, 3);
+            PlayerPrefs.SetFloat(ConstantsAndConfigs.MIN_RADIUS_STAT_NAME, minRadius * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
+            PlayerPrefs.Save();
+            UpdateMinRadius();
+        }
     }
 
     public void UpgradeMaxRadius()
     {
-        // <Subtract cost from inventory here.>
-        PlayerPrefs.SetFloat(ConstantsAndConfigs.MAX_RADIUS_STAT_NAME, maxRadius * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
-        PlayerPrefs.Save();
-        UpdateMaxRadius();
+        if (inventoryManager.items.ContainsKey(ItemType.Berry)
+            && inventoryManager.items[ItemType.Berry].Count >= 3)
+        {
+            inventoryManager.items[ItemType.Berry].RemoveRange(0, 3);
+            PlayerPrefs.SetFloat(ConstantsAndConfigs.MAX_RADIUS_STAT_NAME, maxRadius * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
+            PlayerPrefs.Save();
+            UpdateMaxRadius();
+        }
     }
 
     public void UpgradeSpeed()
     {
-        // <Subtract cost from inventory here.>
-        PlayerPrefs.SetFloat(ConstantsAndConfigs.SPEED_STAT_NAME, speed * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
-        PlayerPrefs.Save();
-        UpdateSpeed();
+        if (inventoryManager.items.ContainsKey(ItemType.Berry)
+            && inventoryManager.items[ItemType.Berry].Count >= 3)
+        {
+            inventoryManager.items[ItemType.Berry].RemoveRange(0, 3);
+            PlayerPrefs.SetFloat(ConstantsAndConfigs.SPEED_STAT_NAME, speed * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
+            PlayerPrefs.Save();
+            UpdateSpeed();
+        }
     }
 
     private void UpdateMinRadius()
