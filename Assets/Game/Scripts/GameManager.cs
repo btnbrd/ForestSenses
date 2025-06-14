@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Controller;
+using Game.Scripts.Rubka;
 using UnityEngine;
 
 [DefaultExecutionOrder((-1))]
@@ -11,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject treeTip;
     private InteractableDetector treeInteraction;
     [SerializeField] private Animator animator;
-    [SerializeField] private float razmaxTime = 1f; // Время поворота (замаха)
+    [SerializeField] private ForestController forestController;
 
 
 
@@ -21,11 +23,18 @@ public class GameManager : MonoBehaviour
         treeInteraction = FindObjectOfType<InteractableDetector>();
     }
 
+    private void Start()
+    {
+        
+    }
 
-    public void StartPrecisionGame()
+    public void StartPrecisionGame(GameObject tree)
     {
         Debug.Log("Starting Precision Game");
-        precisionGame.StartGame();
+        forestController.enabled = false;
+        precisionGame.StartGame(tree);
+        
+        
     }
 
 
@@ -33,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"called end precision game {treeInteraction.isInPrecisionGame}");
         treeInteraction.isInPrecisionGame = false;
+        forestController.enabled = true;
     }
 
     public void ShowInteractableTip(bool isActive)

@@ -14,11 +14,9 @@ public enum ItemType
 public class CollectableWithMouse : MonoBehaviour
 {
     [SerializeField] private ItemType itemType = ItemType.Mushroom;
-    private Renderer renderer;
     
     private void Awake()
     {
-        renderer = gameObject.GetComponent<Renderer>();
     }
 
     private void OnMouseDown()
