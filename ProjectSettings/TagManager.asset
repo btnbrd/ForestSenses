@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tree
+  - Berry
   layers:
   - Default
   - TransparentFX
