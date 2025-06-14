@@ -45,10 +45,5 @@ public class GameManager : MonoBehaviour
         forestController.enabled = true;
     }
 
-    public void ShowInteractableTip(bool isActive)
-    {
-
-        treeTip.gameObject.SetActive(isActive);
-    }
 
 }

@@ -8,7 +8,7 @@ public class LobbyController : MonoBehaviour
 {
     [SerializeField] private Button triggerButton; // UI-кнопка
     [SerializeField] private AudioClip screamClip; // Звуковой клип скримера
-    [SerializeField] private string sceneToLoad = "NextScene"; // Имя сцены
+    [SerializeField] private string sceneToLoad = "SampleScene"; // Имя сцены
     [SerializeField] private AudioSource audioSource; // Источник звука
 
     private bool isLoading; // Флаг для предотвращения множественных вызовов

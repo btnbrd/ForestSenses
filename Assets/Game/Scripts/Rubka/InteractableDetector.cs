@@ -1,29 +1,37 @@
-using System;
-using System.Collections;
+// using System;
+// using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+// using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractableDetector : MonoBehaviour
 {
     [SerializeField] private float interactRange = 3;
+    [SerializeField] private GameObject interactTipPrefab; // Префаб с буквой "E"
+    [SerializeField] private Vector3 offset = new Vector3(0, 2, 3); // Смещение над деревом
 
     public bool isInPrecisionGame;
-    private bool _isTreeInRange = false;
+    // private bool _isTreeInRange = false;
 
     public Collider tree;
     // [SerializeField] private Animator animator;
 
     private SphereCollider _sphereCollider;
+    
+    private GameObject _currentInteractTip; // Текущий экземпляр подсказки
 
+    //
     // public List<Collider> _trees;
+    // public List<Collider> berries;
+    
+    private Dictionary<string, GameObject> _interactTips = new Dictionary<string, GameObject>();
 
-    private void Start()
-    {
-        // _sphereCollider = GetComponent<SphereCollider>();
-        // _sphereCollider.radius = interactRange;
-        // _trees = new List<Collider>();
-    }
+    // private void Start()
+    // {
+    //     // _sphereCollider = GetComponent<SphereCollider>();
+    //     // _sphereCollider.radius = interactRange;
+    //     // _trees = new List<Collider>();
+    // }
 
     public void Update()
     {
@@ -35,13 +43,13 @@ public class InteractableDetector : MonoBehaviour
                 return;
             }
 
-            // Debug.Log(IsTreeInRange());
+            Debug.Log(IsTreeInRange());
             if (IsTreeInRange() == false)
             {
                 return;
             }
 
-            // Debug.Log("E in interactable pressed, start game");
+            Debug.Log("E in interactable pressed, start game");
             isInPrecisionGame = true;
             var hit = GetTreeInRange();
             GameManager.Instance.StartPrecisionGame(hit.gameObject);
@@ -58,6 +66,7 @@ public class InteractableDetector : MonoBehaviour
 
     private Collider GetObjectInRange(string objectTag, float delta = 0)
     {
+     
         var hitColliders = Physics.OverlapSphere(transform.position, interactRange - delta);
         foreach (var hit in hitColliders)
         {
@@ -102,11 +111,14 @@ public class InteractableDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tree"))
         {
-            _isTreeInRange = true;
-            GameManager.Instance.ShowInteractableTip(_isTreeInRange);
-            // tree = collision;
-            // _trees.Add(collision);
+            // _isTreeInRange = true;
         }
+
+        if (_currentInteractTip == null)
+        {
+            CreateInteractTip(collision.gameObject);
+        }
+        
     }
 
     private void OnTriggerExit(Collider collision)
@@ -116,17 +128,44 @@ public class InteractableDetector : MonoBehaviour
             if (!IsTreeInRange(0.08f))
             {
                 // tree = null;
-                _isTreeInRange = false;
-                GameManager.Instance.ShowInteractableTip(_isTreeInRange);
+                // _isTreeInRange = false;
+                // GameManager.Instance.ShowInteractableTip(_isTreeInRange);
                 // _trees.Remove(collision);
                 // _isTreeInRange = _trees.Count == 0;
             }
         }
+        DestroyInteractTip(collision.gameObject.name);
     }
 
+    
+ 
 
-    public void OnChopTree()
+    public void OnChopTree(GameObject treeIn)
     {
-        GameManager.Instance.ShowInteractableTip(IsTreeInRange());
+        DestroyInteractTip(treeIn.name);
+    }
+    
+
+    
+    private void CreateInteractTip(GameObject targetObject)
+    {
+        string objectName = targetObject.name;
+        if (interactTipPrefab != null && !_interactTips.ContainsKey(objectName))
+        {
+            Vector3 pos = targetObject.transform.position + offset;
+            pos.y = offset.y;
+            GameObject tip = Instantiate(interactTipPrefab, pos, Quaternion.identity);
+            tip.SetActive(true);
+            _interactTips[objectName] = tip; // Добавляем подсказку в словарь
+        }
+    }
+
+    private void DestroyInteractTip(string objectName)
+    {
+        if (_interactTips.TryGetValue(objectName, out GameObject tip) && tip != null)
+        {
+            Destroy(tip);
+            _interactTips.Remove(objectName); // Удаляем из словаря
+        }
     }
 }
