@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,9 +9,18 @@ public class InteractableDetector : MonoBehaviour
     [SerializeField] private float interactRange = 3;
 
     public bool isInPrecisionGame;
+    private bool _isTreeInRange = false;
+
+    public Collider tree;
     // [SerializeField] private Animator animator;
 
+    private SphereCollider _sphereCollider;
 
+    private void Start()
+    {
+        _sphereCollider = GetComponent<SphereCollider>();
+        _sphereCollider.radius = interactRange;
+    }
 
     public void Update()
     {
@@ -19,27 +29,29 @@ public class InteractableDetector : MonoBehaviour
             Debug.Log("E in interactable pressed, start game");
             isInPrecisionGame = true;
             var hit = GetTreeInRange();
-            GameManager.Instance.StartPrecisionGame();
+            GameManager.Instance.StartPrecisionGame(hit.gameObject);
         }
     }
 
     private Collider GetTreeInRange(float delta = 0)
     {
-        var hitColliders = Physics.OverlapSphere(transform.position, interactRange - delta);
-        foreach (var hit in hitColliders)
-        {
-            if (hit.CompareTag("Tree"))
-            {
-                return hit;
-            }
-        }
-
-        return null;
+        // var hitColliders = Physics.OverlapSphere(transform.position, interactRange - delta);
+        // foreach (var hit in hitColliders)
+        // {
+        //     if (hit.CompareTag("Tree"))
+        //     {
+        //         return hit;
+        //     }
+        // }
+        //
+        // return null;
+        return tree;
     }
 
     private bool IsTreeInRange(float delta = 0)
     {
-        return !ReferenceEquals(GetTreeInRange(delta), null);
+        // return !ReferenceEquals(GetTreeInRange(delta), null);
+        return _isTreeInRange;
     }
 
 
@@ -59,7 +71,9 @@ public class InteractableDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tree"))
         {
-            GameManager.Instance.ShowInteractableTip(true);
+            _isTreeInRange = true;
+            GameManager.Instance.ShowInteractableTip(_isTreeInRange);
+            tree = collision;
         }
     }
 
@@ -67,11 +81,12 @@ public class InteractableDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Tree"))
         {
-      
-            if (!IsTreeInRange(0.08f))
-            {
-                GameManager.Instance.ShowInteractableTip(false);
-            }
+            _isTreeInRange = false;
+            // if (!IsTreeInRange(0.08f))
+            // {
+            tree = null;
+            GameManager.Instance.ShowInteractableTip(_isTreeInRange);
+            // }
         }
     }
 }
