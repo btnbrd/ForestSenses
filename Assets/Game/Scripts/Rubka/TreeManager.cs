@@ -8,29 +8,39 @@ namespace Game.Scripts.Rubka
     public class TreeManager : MonoBehaviour
     {
         public static TreeManager Instance { get; private set; }
-
+        private InteractableDetector _interactableDetector;
         private void Awake()
         {
             Instance = this;
+            _interactableDetector = FindObjectOfType<InteractableDetector>();
         }
 
-        public void ChopTree(GameObject tree)
+        public void HitTree(GameObject tree)
         {
             var ctrl = tree.GetComponent<TreeController>();
             string treeID = ctrl.ID;
-            PlayerPrefs.SetInt(treeID, 1);
+
+
+            var(itm,  isLast)  = ctrl.TakeHit();
+
+            if (itm != null)
+            {
+                Debug.Log($"{itm.ItemName()} collected");
+            }
+            if (isLast)
+            {
+                ChopTree(tree, ctrl);
+            }
+        }
+
+        private void ChopTree(GameObject tree, TreeController trctrl)
+        {
+            PlayerPrefs.SetInt(trctrl.ID, 1);
             PlayerPrefs.Save();
             tree.SetActive(false);
-            // GameManager.Instance.ShowInteractableTip(false);
-
-            var o = "";
-            foreach (var item in ctrl.loot)
-            {
-                Inventory.Instance.inventoryManager.items[item].Add(Inventory.CreateItem(item));
-                o += item.ToString();
-            }
-            Debug.Log("Inventory: " + o + ", ");
+            _interactableDetector.OnChopTree(tree);
         }
+        
 
         public bool CheckChopped(string ID)
         {

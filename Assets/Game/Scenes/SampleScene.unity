@@ -1233,6 +1233,7 @@ GameObject:
   - component: {fileID: 624800959}
   - component: {fileID: 624800960}
   - component: {fileID: 624800961}
+  - component: {fileID: 624800962}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1283,7 +1284,6 @@ MonoBehaviour:
   precisionGame: {fileID: 131469309}
   treeTip: {fileID: 429423798}
   animator: {fileID: 2115513715}
-  forestController: {fileID: 2115513718}
 --- !u!114 &624800955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,6 +1381,19 @@ MonoBehaviour:
   dayCount: 0
   gameOverScreen: {fileID: 712218045}
   MaxDays: 7
+--- !u!114 &624800962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624800951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c5cd876b1e409cbcd098c5add1ad07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 2115513718}
 --- !u!1 &674457184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,15 +2114,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4284714782071319911, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
       propertyPath: loot.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4284714782071319911, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
       propertyPath: loot.Array.data[1]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4284714782071319911, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
       propertyPath: loot.Array.data[2]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5297276928583659567, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
       propertyPath: m_Name
@@ -2972,7 +2985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4284714782071319911, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
       propertyPath: loot.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4284714782071319911, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
       propertyPath: loot.Array.data[1]

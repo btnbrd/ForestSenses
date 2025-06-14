@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Controller;
+using ForestManagers;
 using Game.Scripts.Rubka;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject treeTip;
     private InteractableDetector treeInteraction;
     [SerializeField] private Animator animator;
-    [SerializeField] private ForestController forestController;
+
 
 
 
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     public void StartPrecisionGame(GameObject tree)
     {
         Debug.Log("Starting Precision Game");
-        forestController.enabled = false;
+        ControlManager.Instance.SwitchControl(false);
         precisionGame.StartGame(tree);
         
         
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"called end precision game {treeInteraction.isInPrecisionGame}");
         treeInteraction.isInPrecisionGame = false;
-        forestController.enabled = true;
+        ControlManager.Instance.SwitchControl(true);
     }
 
 

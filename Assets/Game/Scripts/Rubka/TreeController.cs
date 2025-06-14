@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Serialization;
 
 namespace Game.Scripts.Rubka
@@ -18,6 +19,18 @@ namespace Game.Scripts.Rubka
             {
                 gameObject.SetActive(false);
             }
+        }
+
+        public (InventoryItem, bool) TakeHit()
+        {
+            if (loot.Count == 0)
+            {
+                return (null, true);
+            }
+            ItemType itm = loot[loot.Count - 1];
+           
+            loot.RemoveAt(loot.Count - 1);
+            return (Inventory.CreateItem(itm), loot.Count==0);
         }
 
 
