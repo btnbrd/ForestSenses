@@ -7,11 +7,11 @@ using UnityEngine;
 [DefaultExecutionOrder((-1))]
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private InventoryManager inventoryManager;
+    public InventoryManager inventoryManager;
     public static Inventory Instance { get; private set; }
     // [SerializeField] private int mushrooms = 0;
     // [SerializeField] private int berries = 0;
-    
+
     private void Awake()
     {
         Instance = this;
@@ -44,6 +44,19 @@ public class Inventory : MonoBehaviour
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null);
+        }
+    }
+    
+    public static InventoryItem CreateItem(ItemType t)
+    {
+        switch (t)
+        {
+            case ItemType.Berry:
+                return new BlackberryItem();
+            case ItemType.Mushroom:
+                return new MushroomItem();
+            default:
+                throw new InvalidOperationException("unknown item type you are trying to create!");
         }
     }
 }

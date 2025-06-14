@@ -16,10 +16,19 @@ namespace Game.Scripts.Rubka
 
         public void ChopTree(GameObject tree)
         {
-            string treeID = tree.GetComponent<TreeController>().ID;
+            var ctrl = tree.GetComponent<TreeController>();
+            string treeID = ctrl.ID;
             PlayerPrefs.SetInt(treeID, 1);
             tree.SetActive(false);
             GameManager.Instance.ShowInteractableTip(false);
+
+            var o = "";
+            foreach (var item in ctrl.loot)
+            {
+                Inventory.Instance.inventoryManager.items[item].Add(Inventory.CreateItem(item));
+                o += item.ToString();
+            }
+            Debug.Log("Inventory: " + o + ", ");
         }
 
         public bool CheckChopped(string ID)

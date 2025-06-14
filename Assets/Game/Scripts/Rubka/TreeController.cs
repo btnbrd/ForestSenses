@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,6 +7,7 @@ namespace Game.Scripts.Rubka
 {
     public class TreeController : MonoBehaviour
     {
+        public List<ItemType> loot;
         public string ID { get; private set; }
 
         private void Awake()

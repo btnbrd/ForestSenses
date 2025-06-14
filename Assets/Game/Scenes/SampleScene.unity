@@ -1074,6 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb5559b93494c479b941e87b2af853c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loot: 
 --- !u!1 &624800951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,6 +2294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb5559b93494c479b941e87b2af853c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loot: 
 --- !u!1 &1504378516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3793,6 +3795,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2054555342249657439, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284714782071319911, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
+      propertyPath: loot.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284714782071319911, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
+      propertyPath: loot.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284714782071319911, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}
+      propertyPath: loot.Array.data[2]
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5297276928583659567, guid: 13766cb3656fbda4b85e2b5a041f4a41, type: 3}

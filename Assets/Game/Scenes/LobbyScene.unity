@@ -2082,6 +2082,7 @@ GameObject:
   - component: {fileID: 1786597287}
   - component: {fileID: 1786597286}
   - component: {fileID: 1786597288}
+  - component: {fileID: 1786597289}
   m_Layer: 5
   m_Name: SkillsPanel
   m_TagString: Untagged
@@ -2167,6 +2168,18 @@ MonoBehaviour:
   minRadUpgradeButtonText: {fileID: 739552594}
   maxRadUpgradeButtonText: {fileID: 1585738888}
   speedUpgradeButtonText: {fileID: 1184204209}
+--- !u!114 &1786597289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786597284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43975447356c04641baf32990198f065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1899623964
 GameObject:
   m_ObjectHideFlags: 0
