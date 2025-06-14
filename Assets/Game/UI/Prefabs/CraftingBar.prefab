@@ -174,7 +174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1416809343392847749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -193,7 +193,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.000061035156, y: -6.699997}
-  m_SizeDelta: {x: 0, y: 94.0056}
+  m_SizeDelta: {x: 79.1199, y: 94.0056}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &8373690547843232713
 MonoBehaviour:
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 7196058019674902142}
   - component: {fileID: 567743584155060003}
   m_Layer: 5
-  m_Name: Sufficient Resources
+  m_Name: Craft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sufficient Resources
+  m_text: Craft!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ea7d26231980104dae76df0e994c424, type: 2}
   m_sharedMaterial: {fileID: 8178913985566558035, guid: 5ea7d26231980104dae76df0e994c424, type: 2}
@@ -646,6 +646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7074612432358506114}
+  - component: {fileID: 4770733725758927318}
   m_Layer: 5
   m_Name: CraftingBar
   m_TagString: Untagged
@@ -673,6 +674,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1155.1, y: 215.05}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4770733725758927318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202091063628520057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cd7453ce0f04545ba11792f21dce89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemNameText: {fileID: 3030820014782385774}
+  itemDescriptionText: {fileID: 3212226687201120108}
+  insufficientResourcesIndicator: {fileID: 8085971848891660384}
+  doCraftText: {fileID: 3944136001081482090}
+  craftButton: {fileID: 1561745048133735274}
+  inputItemsSpritesParent: {fileID: 7666393184483714780}
+  outputItemSpriteParent: {fileID: 7489872211115176313}
+  itemSpritePrefab: {fileID: 4156719707720266509, guid: f08ffe03202b21f4eb4c47c2ef0dd2fa, type: 3}
+  inputItemSpacing: 60
 --- !u!1 &4508216780371142330
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,11 +813,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1667478656901211959}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4770733725758927318}
+        m_TargetAssemblyTypeName: CraftingBarController, Assembly-CSharp
+        m_MethodName: DoCraft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5378831716762868043
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1031,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7666393184483714780}
   - {fileID: 1416809343392847749}
   - {fileID: 2387877870078967365}
   m_Father: {fileID: 4899114700986056270}
@@ -1006,6 +1041,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 415.189, y: 180.98}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!1 &7511622216300299419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7666393184483714780}
+  m_Layer: 5
+  m_Name: InputResourcesPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7666393184483714780
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511622216300299419}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6165590429842549349}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -10.471, y: -50}
+  m_SizeDelta: {x: -21.758, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8085971848891660384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 660153673276731682, guid: ce21107aebb970b4fa52e0fdcbc54208, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 660153673276731682, guid: ce21107aebb970b4fa52e0fdcbc54208, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1245,7 +1315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 660153673276731682, guid: ce21107aebb970b4fa52e0fdcbc54208, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 660153673276731682, guid: ce21107aebb970b4fa52e0fdcbc54208, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1285,11 +1355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 660153673276731682, guid: ce21107aebb970b4fa52e0fdcbc54208, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 39.55995
       objectReference: {fileID: 0}
     - target: {fileID: 660153673276731682, guid: ce21107aebb970b4fa52e0fdcbc54208, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -47.0028
       objectReference: {fileID: 0}
     - target: {fileID: 660153673276731682, guid: ce21107aebb970b4fa52e0fdcbc54208, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -9,7 +9,7 @@ using UnityEngine;
 [System.Serializable]
 class InventoryData
 {
-    public List<InventoryItem> items = new List<InventoryItem>();
+    public List<ItemType> items = new List<ItemType>();
 }
 
 // Как юзать: вешаешь на невидимый геймобджект в каждой сцене где нужен инвентарь, всем пользователям (другим скриптам то етсь) раздаёшь ссылку на этот инвентарь.
@@ -34,7 +34,7 @@ public class InventoryManager : MonoBehaviour
 
         foreach (var item in data.items)
         {
-            items[item.Type()].Add(item);
+            items[item].Add(Inventory.CreateItem(item));
         }
     }
 
@@ -45,7 +45,7 @@ public class InventoryManager : MonoBehaviour
         {
             foreach (var item in kv.Value)
             {
-                data.items.Add(item);
+                data.items.Add(item.Type());
             }
         }
 

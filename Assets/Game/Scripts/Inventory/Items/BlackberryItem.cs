@@ -9,9 +9,14 @@ public class BlackberryItem : InventoryItem
         return "Blackberry";
     }
 
+    public override string ItemDescription()
+    {
+        return "Blackberry. Used for craft. Really just a stupid berry, I hate it.";
+    }
+
     public override Sprite ItemIcon()
     {
-        throw new System.NotImplementedException();
+        return Resources.Load<Sprite>("Sprites/Berry");
     }
 
     public override ItemType Type()

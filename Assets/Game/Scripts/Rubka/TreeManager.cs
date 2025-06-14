@@ -26,6 +26,7 @@ namespace Game.Scripts.Rubka
             foreach (var item in ctrl.loot)
             {
                 Inventory.Instance.inventoryManager.items[item].Add(Inventory.CreateItem(item));
+                Inventory.Instance.inventoryManager.Save();
                 o += item.ToString();
             }
             Debug.Log("Inventory: " + o + ", ");

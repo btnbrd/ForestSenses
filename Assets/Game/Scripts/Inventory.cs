@@ -36,10 +36,13 @@ public class Inventory : MonoBehaviour
         {
             case ItemType.Berry:
                 inventoryManager.items[ItemType.Berry].Add(new BlackberryItem());
+                inventoryManager.Save();
                 Debug.Log("Get a berry.");
+                Debug.Log(PlayerPrefs.GetString("Inventory"));
                 break;
             case ItemType.Mushroom:
                 inventoryManager.items[ItemType.Mushroom].Add(new MushroomItem());
+                inventoryManager.Save();
                 Debug.Log("Get a mushroom.");
                 break;
             default:
