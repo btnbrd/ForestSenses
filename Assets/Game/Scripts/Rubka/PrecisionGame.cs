@@ -14,6 +14,7 @@ namespace Game.Scripts.Rubka
         [SerializeField] private float razmaxTime = 0.3f;
         [SerializeField] private float hitTime = 0.25f;
         [SerializeField] private GameObject instance;
+        private InteractableDetector _interactableDetector;
 
         public RectTransform indicator; // Двигающийся индикатор
         public RectTransform hitZone; // Зона попадания
@@ -37,6 +38,7 @@ namespace Game.Scripts.Rubka
             maxY = halfHeight - indicator.rect.height / 2f;
             indicatorPos = indicator.transform.position;
             instance.SetActive(false);
+            _interactableDetector = FindObjectOfType<InteractableDetector>();
         }
 
         void Update()
@@ -139,7 +141,7 @@ namespace Game.Scripts.Rubka
             {
                 Debug.Log("✅ УСПЕХ!");
                 TreeManager.Instance.ChopTree(_tree);
-                
+                _interactableDetector.OnChopTree();
                 // Взаимодействие успешно
             }
             else
