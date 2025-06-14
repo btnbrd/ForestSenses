@@ -49,6 +49,7 @@ public class CraftingMenu : MonoBehaviour
     GameObject MakeCraftingRecipeUI(CraftingRecipe recipe)
     {
         var ui = Instantiate(craftingRecipeUIPrefab);
+        ui.transform.localScale = new Vector3(1, 1, 1);
         craftingBarsControllers.Add(ui.GetComponent<CraftingBarController>());
         ui.GetComponent<CraftingBarController>().Init(this, recipe);
         return ui;
@@ -59,19 +60,19 @@ public class CraftingMenu : MonoBehaviour
         foreach (var recipe in ConstantsAndConfigs.ConsumablesCraftingRecipes)
         {
             var recipeUI = MakeCraftingRecipeUI(recipe);
-            recipeUI.transform.SetParent(consumablesCraftingRecipeUIParent);
+            recipeUI.transform.SetParent(consumablesCraftingRecipeUIParent, false);
         }
 
         foreach (var recipe in ConstantsAndConfigs.ToolsCraftingRecipes)
         {
             var recipeUI = MakeCraftingRecipeUI(recipe);
-            recipeUI.transform.SetParent(toolsCraftingRecipeUIParent);
+            recipeUI.transform.SetParent(toolsCraftingRecipeUIParent, false);
         }
 
         foreach (var recipe in ConstantsAndConfigs.UpgradesCraftingRecipes)
         {
             var recipeUI = MakeCraftingRecipeUI(recipe);
-            recipeUI.transform.SetParent(upgradesCraftingRecipeUIParent);
+            recipeUI.transform.SetParent(upgradesCraftingRecipeUIParent, false);
         }
     }
 
