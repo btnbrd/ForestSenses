@@ -9,9 +9,14 @@ public class MushroomItem : InventoryItem
         return "Mushroom";
     }
 
+    public override string ItemDescription()
+    {
+        return "Mushroom. Used for craft. Really just a clever mushroom. Just kidding! Stupid as hell, can't even solve quadratic equations.";
+    }
+
     public override Sprite ItemIcon()
     {
-        throw new System.NotImplementedException();
+        return Resources.Load<Sprite>("Sprites/PretendThisIsMushroom");
     }
 
     public override ItemType Type()

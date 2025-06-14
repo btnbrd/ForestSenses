@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class InventoryItem
 {
     public abstract string ItemName();
+    public abstract string ItemDescription();
     public abstract Sprite ItemIcon();
     public abstract ItemType Type();
 

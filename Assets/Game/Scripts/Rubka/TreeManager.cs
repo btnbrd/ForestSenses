@@ -26,6 +26,7 @@ namespace Game.Scripts.Rubka
             if (itm != null)
             {
                 Debug.Log($"{itm.ItemName()} collected");
+                Inventory.Instance.inventoryManager.Save();
             }
             if (isLast)
             {
