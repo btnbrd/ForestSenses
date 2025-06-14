@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ForestManagers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,7 @@ using UnityEngine.Serialization;
 public class TimerController : MonoBehaviour
 {
  
-    [SerializeField] private string sceneToLoad = "NextScene"; // Имя сцены
+    // [SerializeField] private string sceneToLoad = "NextScene"; // Имя сцены
     [SerializeField] private int runDurationSeconds = 60;
     [SerializeField] private TextMeshProUGUI timerText; 
     
@@ -36,7 +37,8 @@ public class TimerController : MonoBehaviour
     }
     private IEnumerator TimerCoroutine()
     {
-        while (timeRemaining > 0 && !isLoading)
+        
+        while (timeRemaining > Mathf.CeilToInt(SoundController.Instance.GetScreamClipLength()) && !isLoading)
         {
             yield return new WaitForSeconds(1); // Ждём 1 секунду
             timeRemaining -= 1; // Уменьшаем на 1 секунду
@@ -54,10 +56,16 @@ public class TimerController : MonoBehaviour
             Debug.LogError("No sound controller found");
         }
         SoundController.Instance.PlayScream();
-        yield return new WaitForSeconds(SoundController.Instance.GetScreamClipLength()); // Ждём окончания звука
+        while (timeRemaining > 0 && !isLoading)
+        {
+            yield return new WaitForSeconds(1); // Ждём 1 секунду
+            timeRemaining -= 1; // Уменьшаем на 1 секунду
+            UpdateTimerDisplay(); // Обновляем UI
+        }
+        // yield return new WaitForSeconds(SoundController.Instance.GetScreamClipLength()); // Ждём окончания звука
         
 
-        SceneManager.LoadScene(sceneToLoad);
+        DayController.Instance.FinishDay();
         yield break;
     }
 

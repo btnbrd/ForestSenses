@@ -19,8 +19,9 @@ namespace Game.Scripts.Rubka
             var ctrl = tree.GetComponent<TreeController>();
             string treeID = ctrl.ID;
             PlayerPrefs.SetInt(treeID, 1);
+            PlayerPrefs.Save();
             tree.SetActive(false);
-            GameManager.Instance.ShowInteractableTip(false);
+            // GameManager.Instance.ShowInteractableTip(false);
 
             var o = "";
             foreach (var item in ctrl.loot)
