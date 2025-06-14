@@ -141,7 +141,7 @@ namespace Game.Scripts.Rubka
             {
                 Debug.Log("✅ УСПЕХ!");
                 TreeManager.Instance.ChopTree(_tree);
-                _interactableDetector.OnChopTree();
+                _interactableDetector.OnChopTree(_tree);
                 // Взаимодействие успешно
             }
             else
