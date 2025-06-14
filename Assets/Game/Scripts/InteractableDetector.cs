@@ -6,7 +6,7 @@ using UnityEngine;
 public class InteractableDetector : MonoBehaviour
 {
     [SerializeField] private float interactRange = 3;
-    [SerializeField] private float razmaxTime = 1f; // Время поворота (замаха)
+
     public bool isInPrecisionGame;
     // [SerializeField] private Animator animator;
 

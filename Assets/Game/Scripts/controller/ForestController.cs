@@ -57,10 +57,10 @@ namespace Controller
                 AnimationController.Instance.SetHorizontal(true);
                 if (moveX > 0)
                 {
-                    transform.localScale = new Vector3(1, 1, 1);
+                    transform.rotation =  Quaternion.Euler(0f, 0f, 0f);
                 } else if (moveX < 0)
                 {
-                    transform.localScale = new Vector3(-1, 1, 1);
+                    transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 }
             }
             else

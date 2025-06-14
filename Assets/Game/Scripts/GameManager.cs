@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject treeTip;
     private InteractableDetector treeInteraction;
     [SerializeField] private Animator animator;
-    [SerializeField] private float razmaxTime = 1f; // Время поворота (замаха)
 
 
 
