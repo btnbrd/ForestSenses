@@ -16,8 +16,15 @@ namespace Game.Scripts.Rubka
 
         public void ChopTree(GameObject tree)
         {
+            string treeID = tree.GetComponent<TreeController>().ID;
+            PlayerPrefs.SetInt(treeID, 1);
             tree.SetActive(false);
             GameManager.Instance.ShowInteractableTip(false);
+        }
+
+        public bool CheckChopped(string ID)
+        {
+            return PlayerPrefs.HasKey(ID);
         }
     }
 }

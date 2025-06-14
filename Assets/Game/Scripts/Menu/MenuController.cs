@@ -7,7 +7,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private string nextScene;
     public void StartGame()
     {
-
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.Save();
         SceneManager.LoadScene(nextScene); // Замени "GameScene" на имя твоей сцены
