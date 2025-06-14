@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class UpgradesMenu : MonoBehaviour
 {
-    InventoryManager inventoryManager;
+    [SerializeField] private InventoryManager inventoryManager;
 
     public TextMeshProUGUI minRadText;
     public TextMeshProUGUI maxRadText;
@@ -35,8 +35,7 @@ public class UpgradesMenu : MonoBehaviour
 
     public void UpgradeMinRadius()
     {
-        if (inventoryManager.items.ContainsKey(ItemType.Berry)
-            && inventoryManager.items[ItemType.Berry].Count >= 3)
+        if (inventoryManager.items[ItemType.Berry].Count >= 3)
         {
             inventoryManager.items[ItemType.Berry].RemoveRange(0, 3);
             PlayerPrefs.SetFloat(ConstantsAndConfigs.MIN_RADIUS_STAT_NAME, minRadius * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
