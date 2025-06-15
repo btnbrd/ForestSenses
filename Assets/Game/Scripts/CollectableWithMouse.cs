@@ -7,13 +7,24 @@ using UnityEngine.UI;
 
 public enum ItemType
 {
-    Berry,
-    Mushroom
+    RedBerry,
+    BlueBerry,
+    RedMushroom,
+    BlueMushroom,
+    OrdinaryWood,
+    GoldWood,
+    DiamondWood,
+    SpeedPotion,
+    LightPotion,
+    IronAxe,
+    Lantern,
+    Compass,
+    Key
 }
 
 public class CollectableWithMouse : MonoBehaviour
 {
-    [SerializeField] private ItemType itemType = ItemType.Mushroom;
+    [SerializeField] private ItemType itemType = ItemType.RedMushroom;
     
     private void Awake()
     {

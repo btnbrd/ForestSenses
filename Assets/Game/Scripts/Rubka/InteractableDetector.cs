@@ -60,7 +60,7 @@ public class InteractableDetector : MonoBehaviour
     {
         var berry = GetObjectInRange("Berry");
         berry.gameObject.SetActive(false);
-        Inventory.Instance.CollectWithMouse(ItemType.Berry);
+        Inventory.Instance.CollectWithMouse(ItemType.BlueBerry);
     }
 
 

@@ -33,15 +33,17 @@ public class ConstantsAndConfigs
     {
         new CraftingRecipe(
             new List<Tuple<ItemType, int>>{
-                new Tuple<ItemType, int>(ItemType.Berry, 1)
+                new Tuple<ItemType, int>(ItemType.RedBerry, 3),
+                new Tuple<ItemType, int>(ItemType.RedMushroom, 2)
             },
-            ItemType.Mushroom
+            ItemType.SpeedPotion
         ),
         new CraftingRecipe(
             new List<Tuple<ItemType, int>>{
-                new Tuple<ItemType, int>(ItemType.Berry, 3)
+                new Tuple<ItemType, int>(ItemType.BlueBerry, 3),
+                new Tuple<ItemType, int>(ItemType.BlueMushroom, 2)
             },
-            ItemType.Berry
+            ItemType.LightPotion
         )
     };
 
@@ -50,10 +52,19 @@ public class ConstantsAndConfigs
     {
         new CraftingRecipe(
             new List<Tuple<ItemType, int>>{
-                new Tuple<ItemType, int>(ItemType.Berry, 4),
-                new Tuple<ItemType, int>(ItemType.Mushroom, 5)
+                new Tuple<ItemType, int>(ItemType.OrdinaryWood, 10),
+                new Tuple<ItemType, int>(ItemType.GoldWood, 1),
+                new Tuple<ItemType, int>(ItemType.DiamondWood, 1)
             },
-            ItemType.Mushroom
+            ItemType.IronAxe
+        ),
+        new CraftingRecipe(
+            new List<Tuple<ItemType, int>>{
+                new Tuple<ItemType, int>(ItemType.OrdinaryWood, 10),
+                new Tuple<ItemType, int>(ItemType.BlueBerry, 3),
+                new Tuple<ItemType, int>(ItemType.BlueMushroom, 3)
+            },
+            ItemType.Lantern
         )
     };
 
@@ -62,10 +73,19 @@ public class ConstantsAndConfigs
     {
         new CraftingRecipe(
             new List<Tuple<ItemType, int>>{
-                new Tuple<ItemType, int>(ItemType.Mushroom, 20)
+                new Tuple<ItemType, int>(ItemType.OrdinaryWood, 10),
+                new Tuple<ItemType, int>(ItemType.GoldWood, 1),
+                new Tuple<ItemType, int>(ItemType.DiamondWood, 1)
             },
-            ItemType.Berry
-        )
+            ItemType.Compass
+        ),
+        new CraftingRecipe(
+            new List<Tuple<ItemType, int>>{
+                new Tuple<ItemType, int>(ItemType.OrdinaryWood, 20),
+                new Tuple<ItemType, int>(ItemType.GoldWood, 3)
+            },
+            ItemType.Key
+        ),
     };
 }
 

@@ -35,9 +35,9 @@ public class UpgradesMenu : MonoBehaviour
 
     public void UpgradeMinRadius()
     {
-        if (inventoryManager.items[ItemType.Berry].Count >= 3)
+        if (inventoryManager.items[ItemType.BlueBerry].Count >= 3)
         {
-            inventoryManager.items[ItemType.Berry].RemoveRange(0, 3);
+            inventoryManager.items[ItemType.BlueBerry].RemoveRange(0, 3);
             PlayerPrefs.SetFloat(ConstantsAndConfigs.MIN_RADIUS_STAT_NAME, minRadius * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
             PlayerPrefs.Save();
             UpdateMinRadius();
@@ -46,10 +46,10 @@ public class UpgradesMenu : MonoBehaviour
 
     public void UpgradeMaxRadius()
     {
-        if (inventoryManager.items.ContainsKey(ItemType.Berry)
-            && inventoryManager.items[ItemType.Berry].Count >= 3)
+        if (inventoryManager.items.ContainsKey(ItemType.BlueBerry)
+            && inventoryManager.items[ItemType.BlueBerry].Count >= 3)
         {
-            inventoryManager.items[ItemType.Berry].RemoveRange(0, 3);
+            inventoryManager.items[ItemType.BlueBerry].RemoveRange(0, 3);
             PlayerPrefs.SetFloat(ConstantsAndConfigs.MAX_RADIUS_STAT_NAME, maxRadius * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
             PlayerPrefs.Save();
             UpdateMaxRadius();
@@ -58,10 +58,10 @@ public class UpgradesMenu : MonoBehaviour
 
     public void UpgradeSpeed()
     {
-        if (inventoryManager.items.ContainsKey(ItemType.Berry)
-            && inventoryManager.items[ItemType.Berry].Count >= 3)
+        if (inventoryManager.items.ContainsKey(ItemType.BlueBerry)
+            && inventoryManager.items[ItemType.BlueBerry].Count >= 3)
         {
-            inventoryManager.items[ItemType.Berry].RemoveRange(0, 3);
+            inventoryManager.items[ItemType.BlueBerry].RemoveRange(0, 3);
             PlayerPrefs.SetFloat(ConstantsAndConfigs.SPEED_STAT_NAME, speed * ConstantsAndConfigs.UPGRADE_EXPONENTIAL_MULTIPLIER);
             PlayerPrefs.Save();
             UpdateSpeed();

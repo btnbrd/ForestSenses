@@ -19,47 +19,42 @@ public class Inventory : MonoBehaviour
 
     public void CollectWithMouse(ItemType itemType)
     {
-        // switch (itemType)
-        // {
-        //     case ItemType.Berry:
-        //         berries += 1;
-        //         break;
-        //     case ItemType.Mushroom:
-        //         mushrooms += 1;
-        //         break;
-        //     default:
-        //         throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null);
-        // }
-        // Debug.Log(mushrooms);
-
-        switch (itemType)
-        {
-            case ItemType.Berry:
-                inventoryManager.items[ItemType.Berry].Add(new BlackberryItem());
-                inventoryManager.Save();
-                Debug.Log("Get a berry.");
-                Debug.Log(PlayerPrefs.GetString("Inventory"));
-                break;
-            case ItemType.Mushroom:
-                inventoryManager.items[ItemType.Mushroom].Add(new MushroomItem());
-                inventoryManager.Save();
-                Debug.Log("Get a mushroom.");
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null);
-        }
+        inventoryManager.items[itemType].Add(CreateItem(itemType));
+        inventoryManager.Save();
     }
     
     public static InventoryItem CreateItem(ItemType t)
     {
         switch (t)
         {
-            case ItemType.Berry:
-                return new BlackberryItem();
-            case ItemType.Mushroom:
-                return new MushroomItem();
+            case ItemType.RedBerry:
+                return new BerryRedItem();
+            case ItemType.BlueBerry:
+                return new BerryBlueItem();
+            case ItemType.RedMushroom:
+                return new MushroomRedItem();
+            case ItemType.BlueMushroom:
+                return new MushroomBlueItem();
+            case ItemType.OrdinaryWood:
+                return new WoodOrdinaryItem();
+            case ItemType.GoldWood:
+                return new WoodGoldItem();
+            case ItemType.DiamondWood:
+                return new WoodDiamondItem();
+            case ItemType.SpeedPotion:
+                return new PotionSpeedItem();
+            case ItemType.LightPotion:
+                return new PotionLightItem();
+            case ItemType.IronAxe:
+                return new AxeIronItem();
+            case ItemType.Lantern:
+                return new LanternItem();
+            case ItemType.Compass:
+                return new CompassItem();
+            case ItemType.Key:
+                return new KeyItem();
             default:
-                throw new InvalidOperationException("unknown item type you are trying to create!");
+                throw new ArgumentOutOfRangeException(nameof(t), t, null);
         }
     }
 }

@@ -2,26 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MushroomItem : InventoryItem
+public class PotionSpeedItem : InventoryItem
 {
     public override string ItemName()
     {
-        return "Mushroom";
+        return "Speed potion";
     }
 
     public override string ItemDescription()
     {
-        return "Mushroom. Used for craft. Really just a clever mushroom. Just kidding! Stupid as hell, can't even solve quadratic equations.";
+        return "A bottle of some red liquid, doesn't look too tasty, but makes your legs really work.";
     }
 
     public override Sprite ItemIcon()
     {
-        return Resources.Load<Sprite>("Sprites/PretendThisIsMushroom");
+        return Resources.Load<Sprite>("Sprites/PotionRed");
     }
 
     public override ItemType Type()
     {
-        return ItemType.Mushroom;
+        return ItemType.SpeedPotion;
     }
 
     public override void Use(GameObject player)
