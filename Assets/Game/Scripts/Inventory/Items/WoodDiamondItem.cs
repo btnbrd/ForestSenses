@@ -24,6 +24,11 @@ public class WoodDiamondItem : InventoryItem
         return ItemType.DiamondWood;
     }
 
+    public override bool IsConsumed()
+    {
+        return false;
+    }
+
     public override void Use(GameObject player)
     {
     }

@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -32,16 +32,22 @@ namespace Controller
         private bool isFlickering;
         private float radiusTimer; // Таймер для изменения радиуса
 
-        void Awake()
-        {
-            // Сорян, полностью перезаписываю переменные.
-            // Арктангенс потому что... ну эээ типа радиус он на земле, а нам нужен угол, короче нарисуйте и поймёте.
-            minSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(PlayerPrefs.GetFloat(ConstantsAndConfigs.MIN_RADIUS_STAT_NAME, ConstantsAndConfigs.MIN_RADIUS_DEFAULT) / offset.y));
-            maxSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(PlayerPrefs.GetFloat(ConstantsAndConfigs.MAX_RADIUS_STAT_NAME, ConstantsAndConfigs.MAX_RADIUS_DEFAULT) / offset.y));
-        }
+        private Coroutine _currentBoost;
 
         void Start()
         {
+            // Сорян, полностью перезаписываю переменные.
+            // Арктангенс потому что... ну эээ типа радиус он на земле, а нам нужен угол, короче нарисуйте и поймёте.
+            float byLantern = 1.0f;
+            if (Inventory.Instance.inventoryManager.items[ItemType.Lantern].Count > 0)
+            {
+                byLantern = 2.0f;
+            }
+            minSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(byLantern * Math.Tan(minSpotAngle * Math.PI / 180.0 / 2.0)));
+            maxSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(byLantern * Math.Tan(maxSpotAngle * Math.PI / 180.0 / 2.0)));
+
+
+
             if (target == null)
             {
                 Debug.LogError("Target for LightController is not assigned!");
@@ -106,6 +112,27 @@ namespace Controller
                 // _spotLight.intensity = baseIntensity; // Ровное освещение вне мерцания
             }
         }
-       
+
+        public void ApplyBoost(float duration)
+        {
+            if (_currentBoost != null)
+            {
+                StopCoroutine(_currentBoost);
+            }
+            
+            _currentBoost = StartCoroutine(BoostEffect(duration));
+        }
+
+        IEnumerator BoostEffect(float boostDuration)
+        {
+            minSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(2.0f * Math.Tan(minSpotAngle * Math.PI / 180.0 / 2.0)));
+            maxSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(2.0f * Math.Tan(maxSpotAngle * Math.PI / 180.0 / 2.0)));
+
+            yield return new WaitForSeconds(boostDuration);
+
+            minSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(0.5f * Math.Tan(minSpotAngle * Math.PI / 180.0 / 2.0)));
+            maxSpotAngle = (float)(2.0f * 180.0f / Math.PI * Math.Atan(0.5f * Math.Tan(maxSpotAngle * Math.PI / 180.0 / 2.0)));
+        }
+
     }
 }

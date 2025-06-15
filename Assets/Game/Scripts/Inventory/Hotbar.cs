@@ -6,6 +6,7 @@ using TMPro;
 
 public class Hotbar : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
     [SerializeField] private GameObject itemSpritePrefab;
     [SerializeField] private Transform itemsContainer;
     [SerializeField] private float spacing = 100f;
@@ -89,6 +90,17 @@ public class Hotbar : MonoBehaviour
                 // Set up quantity text
                 var textProvider = itemUI.GetComponent<ItemIconQuantityTextProvider>();
                 textProvider.GetText().text = kv.Value.Count.ToString();
+
+                var button = itemUI.GetComponent<Button>();
+                button.onClick.AddListener(() =>
+                {
+                    Inventory.Instance.inventoryManager.items[kv.Key][0].Use(player);
+                    if (Inventory.Instance.inventoryManager.items[kv.Key][0].IsConsumed())
+                    {
+                        Inventory.Instance.inventoryManager.items[kv.Key].RemoveAt(0);
+                    }
+                    Repopulate();
+                });
 
                 itemUI.SetActive(true);
                 activeItems[kv.Key] = itemUI;

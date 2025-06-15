@@ -24,6 +24,11 @@ public class WoodGoldItem : InventoryItem
         return ItemType.GoldWood;
     }
 
+    public override bool IsConsumed()
+    {
+        return false;
+    }
+
     public override void Use(GameObject player)
     {
     }

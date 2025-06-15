@@ -24,6 +24,11 @@ public class BerryRedItem : InventoryItem
         return ItemType.RedBerry;
     }
 
+    public override bool IsConsumed()
+    {
+        return false;
+    }
+
     public override void Use(GameObject player)
     {
     }

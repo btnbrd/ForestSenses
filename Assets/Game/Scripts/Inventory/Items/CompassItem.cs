@@ -24,6 +24,11 @@ public class CompassItem : InventoryItem
         return ItemType.Compass;
     }
 
+    public override bool IsConsumed()
+    {
+        return false;
+    }
+
     public override void Use(GameObject player)
     {
     }

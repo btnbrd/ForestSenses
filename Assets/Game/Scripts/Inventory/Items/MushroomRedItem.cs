@@ -24,6 +24,11 @@ public class MushroomRedItem : InventoryItem
         return ItemType.RedMushroom;
     }
 
+    public override bool IsConsumed()
+    {
+        return false;
+    }
+
     public override void Use(GameObject player)
     {
     }

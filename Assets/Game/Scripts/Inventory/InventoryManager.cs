@@ -53,4 +53,26 @@ public class InventoryManager : MonoBehaviour
         PlayerPrefs.SetString(INVENTORY_PLAYERPREF_NAME, json);
         PlayerPrefs.Save();
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            foreach (ItemType itemType in (ItemType[])Enum.GetValues(typeof(ItemType)))
+            {
+                items[itemType].Add(Inventory.CreateItem(itemType));
+            }
+
+            Save();
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            foreach (ItemType itemType in (ItemType[])Enum.GetValues(typeof(ItemType)))
+            {
+                items[itemType] = new List<InventoryItem>();
+            }
+
+            Save();
+        }
+    }
 }

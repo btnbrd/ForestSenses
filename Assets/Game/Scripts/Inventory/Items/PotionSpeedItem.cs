@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Controller;
 using UnityEngine;
 
 public class PotionSpeedItem : InventoryItem
@@ -24,7 +25,13 @@ public class PotionSpeedItem : InventoryItem
         return ItemType.SpeedPotion;
     }
 
+    public override bool IsConsumed()
+    {
+        return true;
+    }
+
     public override void Use(GameObject player)
     {
+        player.GetComponent<ForestController>().ApplyBoost(5.0f);
     }
 }

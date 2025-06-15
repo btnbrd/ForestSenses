@@ -39,6 +39,11 @@ namespace Game.Scripts.Rubka
             indicatorPos = indicator.transform.position;
             instance.SetActive(false);
             _interactableDetector = FindObjectOfType<InteractableDetector>();
+
+            if (Inventory.Instance.inventoryManager.items[ItemType.IronAxe].Count > 0)
+            {
+                hitZone.sizeDelta = new Vector2(hitZone.sizeDelta.x, hitZone.sizeDelta.y * 3.0f);
+            }
         }
 
         void Update()

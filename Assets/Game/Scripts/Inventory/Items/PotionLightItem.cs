@@ -24,7 +24,13 @@ public class PotionLightItem : InventoryItem
         return ItemType.LightPotion;
     }
 
+    public override bool IsConsumed()
+    {
+        return true;
+    }
+
     public override void Use(GameObject player)
     {
+        player.GetComponent<PlayerRefToLightController>().lightController.ApplyBoost(5.0f);
     }
 }

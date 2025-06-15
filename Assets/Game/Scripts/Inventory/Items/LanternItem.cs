@@ -24,6 +24,11 @@ public class LanternItem : InventoryItem
         return ItemType.Lantern;
     }
 
+    public override bool IsConsumed()
+    {
+        return false;
+    }
+
     public override void Use(GameObject player)
     {
     }
