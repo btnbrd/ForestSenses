@@ -60,6 +60,7 @@ namespace ForestManagers
             {
                 gameOverScreen.SetActive(true);
                 Time.timeScale = 0f; // Останавливаем игру
+                ControlManager.Instance.SwitchControl(false);
                 Debug.Log("Game Over! Showing results screen.");
             }
             else
