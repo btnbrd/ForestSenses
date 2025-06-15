@@ -6,7 +6,7 @@ public class HelperFuncs
 {
 
     public static bool IsListContainedInDictionary(List<Tuple<ItemType, int>> itemList, 
-                                        Dictionary<ItemType, List<InventoryItem>> dictionary)
+                                        SortedDictionary<ItemType, List<InventoryItem>> dictionary)
     {
         foreach (var (itemType, requiredCount) in itemList)
         {
@@ -22,7 +22,7 @@ public class HelperFuncs
     }
 
     public static bool IsListContainedInDictionary(List<InventoryItem> itemList,
-                                       Dictionary<ItemType, List<InventoryItem>> dictionary)
+                                       SortedDictionary<ItemType, List<InventoryItem>> dictionary)
     {
         // First group the items in the list by their type (like the dictionary does)
         var groupedList = itemList

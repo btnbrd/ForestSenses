@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
 {
     const String INVENTORY_PLAYERPREF_NAME = "Inventory";
 
-    public Dictionary<ItemType, List<InventoryItem>> items = new Dictionary<ItemType, List<InventoryItem>>();
+    public SortedDictionary<ItemType, List<InventoryItem>> items = new SortedDictionary<ItemType, List<InventoryItem>>();
 
     void Awake()
     {

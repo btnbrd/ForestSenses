@@ -92,12 +92,14 @@ public class Hotbar : MonoBehaviour
                 textProvider.GetText().text = kv.Value.Count.ToString();
 
                 var button = itemUI.GetComponent<Button>();
+                button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() =>
                 {
                     Inventory.Instance.inventoryManager.items[kv.Key][0].Use(player);
                     if (Inventory.Instance.inventoryManager.items[kv.Key][0].IsConsumed())
                     {
                         Inventory.Instance.inventoryManager.items[kv.Key].RemoveAt(0);
+                        Inventory.Instance.inventoryManager.Save();
                     }
                     Repopulate();
                 });
