@@ -6,7 +6,7 @@ namespace Controller
     public class ForestController : MonoBehaviour
     {
         [SerializeField] private float moveSpeed = 5f; // Скорость движения
-
+        private float baseSpeed = 5f;
         private float speedUpgradeMultiplier;
 
 
@@ -15,13 +15,13 @@ namespace Controller
         void Awake()
         {
             speedUpgradeMultiplier = PlayerPrefs.GetFloat(ConstantsAndConfigs.SPEED_STAT_NAME, ConstantsAndConfigs.SPEED_MULTIPLIER_DEFAULT);
+            baseSpeed = moveSpeed;
         }
 
         private int prevVertical = 1;
         void Start()
         {
-
-            
+            AnimationController.Instance.SetSpeedMultiplier(1);
         }
         void Update()
         {

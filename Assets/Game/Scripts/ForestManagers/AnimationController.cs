@@ -2,7 +2,6 @@
 using UnityEngine.Serialization;
 
 
-
 namespace ForestManagers
 {
     [DefaultExecutionOrder((-1))]
@@ -11,9 +10,11 @@ namespace ForestManagers
         private static readonly int Horizontal = Animator.StringToHash("horizontal");
         private static readonly int Vertical = Animator.StringToHash("vertical");
         private static readonly int IsRunning = Animator.StringToHash("running");
+        private static readonly int SpeedMultiplier = Animator.StringToHash("speedmultiplier");
+        private const float BaseSpeedMultiplier = 0.5f;
         [SerializeField] private Animator animator;
-        
-        public static AnimationController Instance{get; private set;}
+
+        public static AnimationController Instance { get; private set; }
 
         private void Awake()
         {
@@ -37,10 +38,14 @@ namespace ForestManagers
 
         public void SetTrigger(string trigger)
         {
-            
             animator.SetTrigger(trigger);
             SetVertical(1);
         }
-        
+
+        public void SetSpeedMultiplier(float speedMultiplier)
+        {
+            speedMultiplier *= BaseSpeedMultiplier;
+            animator.SetFloat(SpeedMultiplier, speedMultiplier);
+        }
     }
 }
