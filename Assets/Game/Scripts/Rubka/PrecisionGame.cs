@@ -145,7 +145,7 @@ namespace Game.Scripts.Rubka
             if (indTop >= zoneBottom && indBottom <= zoneTop)
             {
                 Debug.Log("✅ УСПЕХ!");
-                TreeManager.Instance.ChopTree(_tree);
+                TreeManager.Instance.HitTree(_tree);
                 _interactableDetector.OnChopTree(_tree);
                 // Взаимодействие успешно
             }
